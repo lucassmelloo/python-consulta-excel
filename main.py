@@ -11,6 +11,10 @@ importações: PANDAS, OPENPYXL, TWILIO
 import pandas as pd
 from twilio.rest import Client
 
+account_sid = "AC562eba4089e0c5159054c5f6ecc5ffbe"
+auth_token = "bac0d7243e8ac4726330d5af78828c85"
+client = Client(account_sid, auth_token)
+
 lista_meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho']
 
 
@@ -19,22 +23,8 @@ for mes in lista_meses:
     if (tabelas_vendas['Vendas'] > 55000).any():
         vendedor = tabelas_vendas.loc[tabelas_vendas['Vendas'] > 55000, "Vendedor"].values[0]
         vendas = tabelas_vendas.loc[tabelas_vendas['Vendas'] > 55000, "Vendas"].values[0]
-        print(f"O Vendedor: {vendedor} atingiu a margem de vendas: {vendas} no mes: {mes}")
-
-# print(tabela_vendas)
-
-
-
-# Your Account SID from twilio.com/console
-account_sid = "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-# Your Auth Token from twilio.com/console
-auth_token = "your_auth_token"
-
-client = Client(account_sid, auth_token)
-
-message = client.messages.create(
-    to="+15558675309",
-    from_="+15017250604",
-    body="Hello from Python!")
-
-print(message.sid)
+        message = client.messages.create(
+            to="+5571994090421",
+            from_="+14752097481",
+            body=f"O Vendedor: {vendedor} atingiu a margem de vendas: {vendas} no mes: {mes}")
+        print(message.sid)
